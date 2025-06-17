@@ -5,7 +5,8 @@ class Soldier : public Unit {
 public:
 	Soldier();
 	void Attack(Unit* target) override;
-	void TakeDamage(int damage) override;
+	bool IsHuman() const override;
+	void HealedByHealer();
 
 private:
 	
@@ -15,7 +16,8 @@ class Archer : public Unit {
 public:
 	Archer();
 	void Attack(Unit* target);
-	void TakeDamage(int damage) override;
+	bool IsHuman() const override;
+	void HealedByHealer();
 
 private:
 
@@ -24,6 +26,9 @@ private:
 class Knight : public Unit {
 public:
 	Knight();
+	void Attack(Unit* target);
+	bool IsHuman() const override;
+	void HealedByHealer();
 
 private:
 
@@ -32,7 +37,22 @@ private:
 class Healer : public Unit {
 public:
 	Healer();
-	void Heal();
+	void Attack(Unit* target);
+	bool IsHuman() const override;
+	void Heal(Unit* target);
+
+private:
+
+};
+
+
+class Magician : public Unit {
+public:
+	Magician();
+	void Attack(Unit* target);
+	bool IsHuman() const override;
+	void HealedByHealer();
+
 private:
 
 };

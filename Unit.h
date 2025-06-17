@@ -1,5 +1,6 @@
 #pragma once
 #include <cstdint>
+#include <iostream>
 
 enum class EArmorType {
 	eUnarmored,
@@ -23,8 +24,11 @@ public:
 	uint16_t GetGoldCost() const;
 
 	virtual void Attack(Unit* target) = 0;
-	virtual void TakeDamage(int damage) = 0;
+	virtual void Heal(Unit* target) {};
 
+	virtual void TakeDamage(int damage);
+	virtual bool IsHuman() const;
+	virtual void HealedByHealer();
 
 protected:
 	EArmorType m_armor;

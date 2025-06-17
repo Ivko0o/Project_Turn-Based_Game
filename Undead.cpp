@@ -14,22 +14,45 @@ void Skeleton::Attack(Unit* target) {
 	target->TakeDamage(skeletonAttack);
 }
 
-void Skeleton::TakeDamage(int damage) {
-	if (m_armor == EArmorType::eUnarmored) {
-		m_health -= damage;
-		if (skeletonArmorDurability > 0)
-			skeletonArmorDurability--;
-	}
-	else if (m_armor == EArmorType::eLeather) {
-		int reducedDamage = static_cast<int>(damage * 0.75);
-		m_health -= reducedDamage;
-	}
-	else if (m_armor == EArmorType::eMedium) {
-		int reducedDamage = static_cast<int>(damage * 0.50);
-		m_health -= reducedDamage;
-	}
-	else {
-		int reducedDamage = static_cast<int>(damage * 0.25);
-		m_health -= reducedDamage;
-	}
-};
+
+//Ghoul
+const EArmorType ghoulArmor = EArmorType::eHeavy;
+const int ghoulAttack = 12;
+const int ghoulHP = 400;
+const int ghoulMP = 0;
+const int ghoulGoldCost = 250;
+const int ghoulArmorDurability = 6;
+
+Ghoul::Ghoul() : Unit(ghoulArmor, ghoulHP, ghoulMP, ghoulGoldCost, ghoulAttack, ghoulArmorDurability) {};
+
+void Ghoul::Attack(Unit* target) {
+	target->TakeDamage(ghoulAttack);
+}
+
+//Necromancer
+const EArmorType necromancerArmor = EArmorType::eUnarmored;
+const int necromancerAttack = 4;
+const int necromancerHP = 300;
+const int necromancerMP = 200;
+const int necromancerGoldCost = 400;
+const int necromancerArmorDurability = 0;
+
+Necromancer::Necromancer() : Unit(necromancerArmor, necromancerHP, necromancerMP, necromancerGoldCost, necromancerAttack, necromancerArmorDurability) {};
+
+void Necromancer::Attack(Unit* target) {
+	target->TakeDamage(necromancerAttack);
+}
+
+//Zombie
+const EArmorType zombieArmor = EArmorType::eUnarmored;
+const int zombieAttack = 15;
+const int zombieHP = 250;
+const int zombieMP = 0;
+const int zombieGoldCost = 300;
+const int zombieArmorDurability = 0;
+
+Zombie::Zombie() : Unit(zombieArmor, zombieHP, zombieMP, zombieGoldCost, zombieAttack, zombieArmorDurability) {};
+
+void Zombie::Attack(Unit* target) {
+	target->TakeDamage(zombieAttack);
+}

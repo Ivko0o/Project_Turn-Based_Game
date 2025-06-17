@@ -22,9 +22,11 @@ public:
 	uint16_t GetArmorDurability() const;
 	uint16_t GetGoldCost() const;
 
-	virtual void Attack() = 0;
+	virtual void Attack(Unit* target) = 0;
+	virtual void TakeDamage(int damage) = 0;
 
-private:
+
+protected:
 	EArmorType m_armor;
 	uint16_t m_health;
 	uint16_t m_mana;

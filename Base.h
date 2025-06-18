@@ -1,28 +1,21 @@
 #pragma once
-#include <iostream>
 #include <fstream>
+#include <string>
+#include "Unit.h"
 
 class Base
 {
 public:
-	Base() : m_name(), m_gold() {
-		if (m_baseCount >= m_maxBases)
-			throw std::invalid_argument("Can not create base! Reached maximum amount of bases!\n");
-		std::ifstream readingFile;
-		readingFile.open("base-config.txt", std::ios::in);
-
-		
-		m_baseCount++;
-	};
+	Base(const std::string& fileName);
 
 private:
 	std::string m_name;
-	int m_gold;
-	int m_maxUnitCount; 
+	int m_startingGold;
+	int m_maxUnitCount;
+	int m_maxHeroesCount;
+	Unit** m_units;
+	Unit** m_heroes;
 
 	static int m_baseCount;
 	static const int m_maxBases;
-
-
-
 };

@@ -1,6 +1,6 @@
 #include "Humans.h"
 
-const int healAmount = 100;
+const int healerHealAmount = 100;
 
 //Soldier
 const EArmorType soldierArmor = EArmorType::eMedium;
@@ -11,14 +11,13 @@ const int soldierGoldCost = 250;
 const int soldierArmorDurability = 8;
 
 Soldier::Soldier() : Unit(soldierArmor, soldierHP, soldierMP, soldierGoldCost, soldierAttack, soldierArmorDurability) {};	//Default Constructor
-bool Soldier::IsHuman() const { return true; };																				//Checks if the unit is from Human race
 
 void Soldier::Attack(Unit* target) {
 	target->TakeDamage(soldierAttack);
 }
 
 void Soldier::HealedByHealer() {
-	m_health += healAmount;
+	m_health += healerHealAmount;
 	if (m_health > soldierHP)
 		m_health = soldierHP;
 }
@@ -32,12 +31,11 @@ const int archerGoldCost = 300;
 const int archerArmorDurability = 3;
 
 Archer::Archer() : Unit(archerArmor, archerHP, archerMP, archerGoldCost, archerAttack, archerArmorDurability) {};		//Default constructor
-bool Archer::IsHuman() const { return true; };																			//Checks if the unit is from Human race
 void Archer::Attack(Unit* target) {
 	target->TakeDamage(archerAttack);
 }
 void Archer::HealedByHealer() {
-	m_health += healAmount;
+	m_health += healerHealAmount;
 	if (m_health > archerHP)
 		m_health = archerHP;
 }
@@ -50,13 +48,12 @@ const int knightMP = 0;
 const int knightGoldCost = 700;
 const int knightArmorDurability = 10;
 
-Knight::Knight() : Unit(knightArmor, knightHP, knightMP, knightGoldCost, knightAttack, knightArmorDurability) {};		//Default constructor
-bool Knight::IsHuman() const { return true; };																			//Checks if the unit is from Human race
+Knight::Knight() : Unit(knightArmor, knightHP, knightMP, knightGoldCost, knightAttack, knightArmorDurability) {};	//Default constructor
 void Knight::Attack(Unit* target) {
 	target->TakeDamage(knightAttack);
 }
 void Knight::HealedByHealer() {
-	m_health += healAmount;
+	m_health += healerHealAmount;
 	if (m_health > knightHP)
 		m_health = knightHP;
 }
@@ -70,13 +67,12 @@ const int healerGoldCost = 100;
 const int healerArmorDurability = 0;
 
 Healer::Healer() : Unit(healerArmor, healerHP, healerMP, healerGoldCost, healerAttack, healerArmorDurability) {};
-bool Healer::IsHuman() const { return true; };
 void Healer::Attack(Unit* target) {
 	target->TakeDamage(healerAttack);
 }
 
 void Healer::Heal(Unit* target) {
-	if (m_mana >= 100 && !target->IsHuman()) {
+	if (m_mana >= 100 && target->IsHuman()) {
 		target->HealedByHealer();
 		m_mana -= 100;
 	}	
@@ -104,7 +100,7 @@ void Magician::Attack(Unit* target) {
 }
 
 void Magician::HealedByHealer() {
-	m_health += healAmount;
+	m_health += healerHealAmount;
 	if (m_health > magicianHP)
 		m_health = magicianHP;
 }

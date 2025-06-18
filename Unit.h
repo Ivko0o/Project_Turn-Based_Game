@@ -28,7 +28,7 @@ public:
 
 	virtual void TakeDamage(int damage);
 	virtual bool IsHuman() const;
-	virtual void HealedByHealer();
+	virtual void HealedByHealer() {};
 
 protected:
 	EArmorType m_armor;

@@ -1,5 +1,7 @@
 #include "Undead.h"
 
+int const ghostHealAmount = 250;
+
 //Skeleton
 const EArmorType skeletonArmor = EArmorType::eMedium;
 const int skeletonAttack = 5;
@@ -29,6 +31,12 @@ void Ghoul::Attack(Unit* target) {
 	target->TakeDamage(ghoulAttack);
 }
 
+void Ghoul::HealedByHealer() {
+	m_health += ghostHealAmount;
+	if (m_health > ghoulHP)
+		m_health = ghoulHP;
+}
+
 //Necromancer
 const EArmorType necromancerArmor = EArmorType::eUnarmored;
 const int necromancerAttack = 4;
@@ -56,3 +64,20 @@ Zombie::Zombie() : Unit(zombieArmor, zombieHP, zombieMP, zombieGoldCost, zombieA
 void Zombie::Attack(Unit* target) {
 	target->TakeDamage(zombieAttack);
 }
+
+//Ghost
+const EArmorType ghostArmor = EArmorType::eUnarmored;
+const int ghostAttack = 0;
+const int ghostHP = 0;
+const int ghostMP = 0;
+const int ghostGoldCost = 500;
+const int ghostArmorDurability = 0;
+
+Ghost::Ghost() : Unit(ghostArmor, ghostHP, ghostMP, ghostGoldCost, ghostAttack, ghostArmorDurability) {};
+void Ghost::Heal(Unit* target){
+	if (!target->IsHuman()) {
+		target->HealedByHealer();
+			//TRQBVA DA SLOJISH FUNCKIQ ZA UNISHTOJAVANE NA OBEKTA
+	}
+}
+

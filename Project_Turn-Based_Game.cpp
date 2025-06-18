@@ -1,3 +1,4 @@
+//TRQBVA DA SLOJISH PROVERKA VYV FUKNCIQTA TAKEDAMAGE() DALI KRYVTA NA EDINICATA E PO-MALKO OT 0 I DA Q UNISHTOJISH AKO E
 #include <iostream>
 #include "Humans.h"
 #include "Undead.h"
@@ -20,6 +21,11 @@ int main()
 	std::cout << "Attack: " << soldier->GetAttack() << "\n";
 	std::cout << "Gold Cost: " << soldier->GetGoldCost() << "\n\n";
 
+	healer->Heal(soldier);
+	std::cout << "Health: " << soldier->GetHealth() << "\n";
+	std::cout << "Armor Durability: " << soldier->GetArmorDurability() << "\n";
+	std::cout << "Attack: " << soldier->GetAttack() << "\n";
+	std::cout << "Gold Cost: " << soldier->GetGoldCost() << "\n\n";
 
 
 

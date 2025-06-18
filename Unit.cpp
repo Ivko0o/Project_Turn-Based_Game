@@ -4,7 +4,7 @@
 Unit::Unit(EArmorType armor, uint16_t HP, uint16_t MP, uint16_t gold, uint16_t att, uint16_t armorDur) : m_armor(armor), m_health(HP), m_mana(MP), m_goldCost(gold), m_attack(att), m_armorDurability(armorDur) {};
 
 bool Unit::IsHuman() const {
-	return false;
+	return true;
 }
 
 //Getters
@@ -52,10 +52,4 @@ void Unit::TakeDamage(int damage) {
 	}
 	m_health -= damage;
 	m_armorDurability--;
-}
-
-
-void Unit::HealedByHealer() {
-	if (m_mana >= 100 && !IsHuman())
-		HealedByHealer();
 }

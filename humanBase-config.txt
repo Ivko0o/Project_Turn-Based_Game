@@ -1,0 +1,4 @@
+Name: Human Base
+Starting Gold: 5000
+Maximum Units: 20
+Maximum Heroes: 7
